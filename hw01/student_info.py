@@ -1,0 +1,1 @@
+print(" Name: Nachiket Dani \n Birthday: 4th May 1987 \n Hobbies: Trekking & playing games \n Favorite Book: The Godfather \n Favorite Movie: The Departed ")
