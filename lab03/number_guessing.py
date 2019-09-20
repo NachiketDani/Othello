@@ -1,20 +1,21 @@
 import random
 
 def main():
-    ## Generate random number between 1 and 50 for the game
+
+    ##### Generate random number between 1 and 50 for the game
     rand_num = random.randint(1,50)
-    print (rand_num) ## COMMENT/DELETE LINE BEFORE YOU SUBMIT
+    # print (rand_num) ## Print random number generated for reference purposes while validating code
     
-    ## Initation of game and guess counter
+    ##### Initation of game and guess counter
     print ("Welcome to the Guessing Game!")
     guess1 = int((input ("I picked a number between 1 and 50. Try and guess!" "\n")))
     print("You guessed", guess1)
     guess_count = 1
     
-    ## Initiate variable delta for calculating approach to answer
+    ##### Initiate variable delta for calculating approach to answer
     delta = 1
 
-    ## Determine clue to be provided and ask for next guess while incrementing guess count by 1
+    ##### Determine clue to be provided and ask for next guess while incrementing guess count by 1
     while delta > 0:
         delta = abs(guess1-rand_num)
         if (delta == 1):
@@ -43,6 +44,8 @@ def main():
             guess_count += 1
 
     print ("Congratulations. You figured it out in", guess_count, "tries")
+    
+    ##### Extended code for boast message
     if guess_count == 1:
         print ("That was lucky!")
     elif (guess_count >= 2 and guess_count <= 4):
