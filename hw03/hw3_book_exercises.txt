@@ -3,10 +3,15 @@ Name: Nachiket Dani
 Part1: Book Exercises
 
 Ans Q1: A Boolean expression can have 2 values.Either False or True (0 or 1).
+
 Ans Q2: The term Boolean originates from the name of British mathematician George Boole.
+
 Ans Q3: The integer equivalent of True in python is 1.
+
 Ans Q4: The integer equivalent of False in python is 0.
+
 Ans Q5: The value -16 is interpreted as True when interpreted as boolean.
+
 Ans Q6: Given: x, y, z = 3, 5, 7
     (a) x == 3................True
     (b) x < y.................True
