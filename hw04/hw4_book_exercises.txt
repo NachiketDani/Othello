@@ -1,0 +1,23 @@
+1. In Listing 5.4 (addnonnegatives.py) could the condition of the if statement have used > instead of >= and achieved the same results? Why?
+
+
+2. In Listing 5.4 (addnonnegatives.py) could the condition of the while statement have used > instead of >= and achieved the same results? Why?
+
+
+3. In Listing 5.4 (addnonnegatives.py) what would happen if the statement entry = int(input()) # Get the value were moved out of the loop? Is moving the assignment out of the loop a good or bad thing to do?
+Why?
+
+
+4. How many asterisks does the following code fragment print?
+a = 0
+while a < 100:
+print('*', end='')
+a += 1
+print()
+
+
+5. How many asterisks does the following code fragment print?
+a = 0
+while a < 100:
+print('*', end='')
+print()
