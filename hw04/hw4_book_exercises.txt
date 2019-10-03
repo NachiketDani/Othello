@@ -1,12 +1,16 @@
-1. In Listing 5.4 (addnonnegatives.py) could the condition of the if statement have used > instead of >= and achieved the same results? Why?
+Prepared by: Nachiket Dani
 
+1. In Listing 5.4 (addnonnegatives.py) could the condition of the if statement have used > instead of >= and achieved the same results? Why?
+Answer: Yes; changing the >= to > in the if loop does not change the result. The program will continue and will not add 0 to the sum.
 
 2. In Listing 5.4 (addnonnegatives.py) could the condition of the while statement have used > instead of >= and achieved the same results? Why?
+Answer: Yes changing >= to > for the while loop does not yield same results. The while loop will never initiate since the starting value for entry is being considered 0.
 
-
-3. In Listing 5.4 (addnonnegatives.py) what would happen if the statement entry = int(input()) # Get the value were moved out of the loop? Is moving the assignment out of the loop a good or bad thing to do?
-Why?
-
+3. In Listing 5.4 (addnonnegatives.py) what would happen if the statement 
+entry = int(input()) # Get the value ; were moved out of the loop? 
+Is moving the assignment out of the loop a good or bad thing to do?Why?
+Answer: If the statement were to be moved out of the loop, the user will only be able to enter a single value.
+The while loop will only execute for that single entry and program will not produce the anticipated results.
 
 4. How many asterisks does the following code fragment print?
 a = 0
@@ -14,6 +18,7 @@ while a < 100:
 print('*', end='')
 a += 1
 print()
+Answer: The code prints 100 asterisks.
 
 
 5. How many asterisks does the following code fragment print?
@@ -21,3 +26,4 @@ a = 0
 while a < 100:
 print('*', end='')
 print()
+Answer: The code prints out infinite asterisks. (endless loop since a is never incremented and always stays <100)
