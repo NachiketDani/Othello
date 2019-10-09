@@ -11,6 +11,7 @@ def main():
     MININDAY = 1440             # 1440 minutes in 1 day
     KWH_WMIN = 60000            # Watt-min to kWh conversion rate (1000*60)
     PUMPON_THRESHOLD = 500      # Minimum power value for pump to be ON
+    SOFTNER_THRESHOLD = 120
     pump_onmin_total = 0
     totalmin_count = 0
     water_vol = 0
@@ -18,6 +19,9 @@ def main():
     power_cost = 0
     gal5_min = -1
     gal100_min = -1
+    pump_on_softner = 0
+    softner_pumpduration = []
+    softner_runstart = []
 
     # Code for receiving filename from user; exception handling
     input_file = input("Please enter the file name: ")
@@ -34,6 +38,14 @@ def main():
         pump_poweruse += power_atmin
         if power_atmin >= PUMPON_THRESHOLD:
             pump_onmin_total += 1
+            pump_on_softner += 1
+            if pump_on_softner == 1:
+                pumpon_timer = totalmin_count
+        else:
+            if pump_on_softner >= SOFTNER_THRESHOLD:
+                softner_pumpduration.append(pump_on_softner)
+                softner_runstart.append(pumpon_timer)
+            pump_on_softner = 0
 
     # Following code determines time needed to reach 5 and 100 gallons
         if pump_onmin_total == GALLON5_MIN:
@@ -70,5 +82,13 @@ def main():
     # Print code for filling 5 and 100 gallons
     print("It took", gal5_min, "minutes of data to reach 5 gallons.")
     print("It took", gal100_min, "minutes of data to reach 100 gallons.\n")
+
+    # Print code for water softner recharges
+    if len(softner_pumpduration) != 0:
+        print("Information on water softner recharges:")
+    for i in range(len(softner_pumpduration)):
+        print(softner_pumpduration[i], "minute run started at",
+              softner_runstart[i])
+
 
 main()
