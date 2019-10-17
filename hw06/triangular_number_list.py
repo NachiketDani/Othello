@@ -24,7 +24,7 @@ def input_check():
         except ValueError:
             print("Invalid input! Try Again")
             return
-
+        """Print sum and append the sum to triangular number list"""
         user_input = int(user_input)
         while user_input > 0:
             sum_num = sum_num + user_input
