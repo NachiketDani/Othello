@@ -2,7 +2,9 @@ from die import Die
 
 
 class PairofDice:
-    """Pair of dice"""
+    """
+    2 dice
+    """
     def __init__(self):
         self.die1 = Die()
         self.die2 = Die()
@@ -11,5 +13,5 @@ class PairofDice:
         self.die1.roll()
         self.die2.roll()
 
-    def current_value(self):
-        return die1.current_value + die2.current_value
+    def current_sum(self):
+        return self.die1.current_value + self.die2.current_value

@@ -3,7 +3,7 @@ import random
 
 class Die:
     """
-    Single die
+    Class for Single die
     """
     def __init__(self):
         """Initializing attribute; dice not rolled"""
