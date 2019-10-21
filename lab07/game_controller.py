@@ -1,3 +1,4 @@
+# Class file for game controller
 from pair_of_dice import PairofDice
 
 
@@ -10,6 +11,7 @@ class GameController:
         self.point = 0
 
     def start_play(self):
+        """Trigger start of play, roll 2 dice"""
         print("Press enter to roll the dice:...")
         input()
         self.dice_pair.roll_dice()
@@ -17,6 +19,7 @@ class GameController:
         self.outcome_roll1(current_score)
 
     def outcome_roll1(self, current_score):
+        """Begin play to win or lose on first roll"""
         LOSE = [2, 3, 12]
         WIN = [7, 11]
         if current_score in LOSE:
@@ -29,6 +32,7 @@ class GameController:
             self.continue_play()
 
     def continue_play(self):
+        """Continue playing till point or loss on 7"""
         print("Press enter to roll the dice:...")
         input()
         self.dice_pair.roll_dice()

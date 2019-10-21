@@ -1,3 +1,4 @@
+# Die Class file
 import random
 
 
@@ -10,4 +11,5 @@ class Die:
         self.current_value = 0
 
     def roll(self):
+        """Roll a die to get random value from 1 to 6"""
         self.current_value = random.randint(1, 6)
