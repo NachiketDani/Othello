@@ -1,4 +1,4 @@
-# Dice Play Game File
+# Dice Play Game File - Prepared by Nachiket Dani
 from game_controller import GameController
 
 
