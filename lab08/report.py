@@ -14,8 +14,10 @@ def main(file_name):
     print("Top level country domains:")
     print_output(data.top_n_country_tlds_freqs(10))
 
+
 def print_output(collection):
     for item in collection:
         print(item[0]+":  \t", round(item[1], 3))
+
 
 main(sys.argv[1])
