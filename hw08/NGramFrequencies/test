@@ -1,0 +1,30 @@
+import sys
+import re
+
+
+def main():
+    input_file = (sys.argv[1])
+    file_object = open(input_file)
+    chars_dict = {"mr.": "mr", "mrs.": "mrs", "ms.": "ms", ",": " COMMA", "-": " "}
+    total_count = 0
+    # print(file_object)
+    clean_text = ""
+
+    for line in file_object:
+        line = line.lower()
+        line = re.sub(r"[\(\)\"\:\;]", "", line)
+        for item in chars_dict.items():
+            line = line.replace(item[0], item[1])
+        clean_text += line
+    print(clean_text)
+        # print(line)
+
+    # FOLLOWING CODE CONVERTS LINE TO LIST AND COUNTS
+        # for char in line_list:
+        #     total_count += 1
+        #     if char in chars_dict.keys():
+        #         chars_dict[char] += 1
+        #     else:
+        #         chars_dict[char] = 1
+
+main()

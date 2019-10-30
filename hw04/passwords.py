@@ -20,8 +20,7 @@ def main():
     rest should be '*'.Ends with a random integer between 0 and 99"""
     last_name2 = last_name + ("*******")
     username = first_name[0] + last_name2[0:7] + str(random.randint(0, 99))
-    print("\nThanks " + first_name.title() + \n
-          ", your username is", username, "\n")
+    print("\nThanks " + first_name.title(), your username is", username")
 
     # Code piece for password option 1
     """Password1 is the concatenation of the user's first and last
