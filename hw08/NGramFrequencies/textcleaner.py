@@ -3,7 +3,7 @@ import re
 
 class TextCleaner:
 
-    def __init__(self, file_name, ):
+    def __init__(self, file_name):
         """
         Class extracts; returns cleaned lines
         """
@@ -24,9 +24,10 @@ class TextCleaner:
         # Remove specific special characters
             line = re.sub(r"[\(\)\"\:\;\-]", "", line)
             self.clean_text += line
+        return self.clean_text
 
     def sentences(self):
         """
-        Separates lines from cleaned file text
+        Separates lines from cleaned file text into list of cleaned sentences
         """
         return self.clean_text.split(".")

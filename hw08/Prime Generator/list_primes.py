@@ -10,10 +10,8 @@ def main():
     except ValueError:
         print("Enter a valid integer only!")
         return
-    # start = time.time()
+
     print_output(prime_gen.primes_to_max(input_num), input_num)
-    # end = time.time()
-    # print(end-start, "seconds")
 
 
 def print_output(numberlist, input_num):
