@@ -8,4 +8,8 @@ def test_process_string():
     # "ab*" should yield "b" as output
     # "ab^" should yield "ba" as output
     # "^" should yield "" as output
-    assert False
+    decode_tester = StringProcessor()
+    assert decode_tester.process_string("ab") == ""
+    assert decode_tester.process_string("ab*") == "b"
+    assert decode_tester.process_string("ab^") == "ba"
+    assert decode_tester.process_string("^") == ""
