@@ -1,14 +1,17 @@
 from word_ladder import WordLadder
 
 
-# TODO: Write appropriate unit tests
-
+# Test function for 2 word pairs
 def test_make_ladder():
-    test_w1 = earth
-    test_w2 = ocean
+    """Test for stack size and stack top value"""
     english_words = test_load_words()
-    test_word = WordLadder(test_w1, test_w2, english_words[len(test_w1)])
-    
+    test_dict = {"earth": ["ocean", 14], "wind": ["rain", 5]}
+    english_words = test_load_words()
+    for testw1, testw2 in test_dict.items():
+        test_word = WordLadder(testw1, testw2[0], english_words[len(testw1)])
+        test_ladder = test_word.make_ladder()
+        assert test_ladder.peek() == testw2[0]
+        assert test_ladder.size() == testw2[1]
 
 
 def test_load_words():
@@ -23,6 +26,3 @@ def test_load_words():
                 # Initialize a set with one element
                 valid_words[len(w)] = {w}
     return valid_words
-
-
-main()

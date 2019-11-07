@@ -24,9 +24,7 @@ class WordLadder:
         change_word = ""     # Ladder word created by changing char
         new_stack = Stack()  # New stack with valid intermediary words
         ladder_size = 0
-        alphabet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-                    "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-                    "u", "v", "w", "x", "y", "z"}
+        alphabet = "abcdefghijklmnopqrstuvwxyz"
         # Step1a: Push w1 to stack
         self.stack_ladder.push(self.w1)
         # Step1b: Initialize queue containing stack
