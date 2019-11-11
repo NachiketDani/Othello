@@ -3,14 +3,19 @@ HEIGHT = 500
 PACMAN_HEIGHT = 100
 PACMAN_WIDTH = 100
 SPEED = 3
-CHOMP_SPEED = 10
+CHOMP_ANGLE_SPEED = 3
+LOWER_ANGLE_RIGHT = 45
+LOWER_ANGLE_LEFT = 225
+LOWER_ANGLE_UP = 315
+LOWER_ANGLE_DOWN = 135
+lower_jaw_angle = 45
+upper_jaw_angle = 315
+open_close = True
+
 x = WIDTH/2
 y = HEIGHT/2
 x_add = 0
 y_add = 0
-angle1 = 45
-angle2 = 315
-state = open
 
 
 def setup():
@@ -20,7 +25,7 @@ def setup():
     noStroke()
 
 def draw():
-    global x, y  # Must be declared as global
+    global x, y, angle1, angle2, open_close, lower_jaw_angle, upper_jaw_angle  # Must be declared as global
     background(0)
 
     x = x + x_add
@@ -61,10 +66,18 @@ def draw():
     
     
     # Mouth open and close
-    if (angle2 - angle1):
-        angle1 -= CHOMP_SPEED
-        angle2 += CHOMP_SPEED
-    
+    if open_close is True:
+        lower_jaw_angle -= CHOMP_ANGLE_SPEED
+        upper_jaw_angle += CHOMP_ANGLE_SPEED
+        if (upper_jaw_angle - lower_jaw_angle >= 360):
+            open_close = False
+    else:
+        lower_jaw_angle += CHOMP_ANGLE_SPEED
+        upper_jaw_angle -= CHOMP_ANGLE_SPEED
+        if (upper_jaw_angle - lower_jaw_angle < 270):
+            open_close = True
+
+
     # Always draw PacMan at his real current location.
     pacman(x, y)
 
@@ -72,33 +85,26 @@ def pacman(x, y):
     """Draw PacMan to the screen"""
     # Use global variables as necessary
     arc(x, y, PACMAN_WIDTH, PACMAN_HEIGHT, 
-        radians(angle1), 
-        radians(angle2))
+        radians(lower_jaw_angle), 
+        radians(upper_jaw_angle))
 
 def keyPressed():
-    global x_add, y_add, angle1, angle2  # Must be declared as global
+    global x_add, y_add, angle1, angle2, lower_jaw_angle, upper_jaw_angle  # Must be declared as global
     if (key == CODED):
         if (keyCode == DOWN):
             x_add = 0
             y_add = SPEED
-            direction = "down"
-            angle1 = 135
-            angle2 = 405
+            lower_jaw_angle = LOWER_ANGLE_DOWN 
         elif (keyCode == UP):
             x_add = 0
             y_add = -(SPEED)
-            direction = "up"
-            angle1 = 315 
-            angle2 = 585
+            lower_jaw_angle = LOWER_ANGLE_UP
         elif (keyCode == LEFT):
             x_add = -(SPEED)
             y_add = 0
-            direction = "left"
-            angle1 = 225
-            angle2 = 495
+            lower_jaw_angle = LOWER_ANGLE_LEFT
         elif (keyCode == RIGHT):
             x_add = SPEED
             y_add = 0
-            angle1 = 45
-            angle2 = 315
-            direction = "right"
+            lower_jaw_angle = LOWER_ANGLE_RIGHT
+        upper_jaw_angle = lower_jaw_angle + 270
