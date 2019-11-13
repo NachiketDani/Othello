@@ -21,8 +21,8 @@ class Maze:
     # TODO:
     # PROBLEM 3: implement dot eating
     # BEGIN CODE CHANGES
-    def eat_dots(self):  # You might want/need to pass arguments here.
-        pass
+    def eat_dots(self, x, y):  # You might want/need to pass arguments here.
+        self.dots.eat(x, y)
 
     # END CODE CHANGES
 

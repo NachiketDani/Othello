@@ -38,9 +38,15 @@ class Dots:
     # TODO:
     # PROBLEM 3: implement dot eating
     # BEGIN CODE CHANGES
-    def eat(self):  # You might want/need to pass arguments here.
-        pass
-
+    def eat(self, x, y):
+        matrix = [self.top_row, self.bottom_row, self.left_col, self.right_col]
+        for dot in matrix:
+            for i in dot:
+                if (((abs(x - i.x) < self.EAT_DIST) or
+                    (abs(x - i.x) > (self.WIDTH - self.EAT_DIST))) and
+                    ((abs(y - i.y) < self.EAT_DIST) or
+                     (abs(y - i.y) > (self.HEIGHT - self.EAT_DIST)))):
+                    dot.remove(i)
     # END CODE CHANGES
 
     def dots_left(self):
