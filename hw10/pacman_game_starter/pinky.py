@@ -87,8 +87,6 @@ class Pinky(GameCharacter):
                 else:
                     self.x_add = -(self.velocity)
                     self.y_add = 0
-
-
         # END CODE CHANGES
 
         # If the player wins, stop Pinky moving
