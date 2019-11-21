@@ -1,0 +1,37 @@
+1. Tests for game_controller_test.py (GameController Class)
+
+test_constructor() to test the constructor of the GameController class
+Valid input: A GameControllerobject created with integer values for the parameters WINDOW_SIZE and SIZE.
+Expected return values: Creates a GameController object with its WINDOW_SIZE and SIZE attributes matching the inputted parameters to the constructor. The player_score and ai_score attributes should be set to the value 2, the player_turn attribute should be set to True, and the game_over atrribute should be set to False.
+
+test_turn_control() to test the turn_control() method of the GameController class
+Valid input: Create a valid GameController object
+Expected return: If the GameController object's game_over attribute is set to False, the set_turn() method should be called and the player_turn attribute should change appropriately.
+If the GameController object's game_over attribute is set to True the set_turn() method should not be called and the player_turn attribute should not change.
+
+test_keep_score() to test if the game can score correctly.
+Valid input: Create a full board with preset number of black and white discs. 
+Expected return: the scores must be counted correctly and respective variables must hold the counts correctly.
+
+2. Tests for board_test.py (Board class)
+test_display() to test the Board constructor
+Valid inputs: Creating a Board object with integer values for window_size and size and a GameController object.
+Expected return values: An object of the disc class whose BOARD_SIZE attribute allows the board to be divided into BOARD_SIZE * BOARD_SIZE squares of equal area.
+The discs attribute of the disc object should create a list of size (4x4 for a BOARD_SIZE of 4) lists of length size. The four middle discs should also have their color attributes appripriately set (to white or black) for the start of the game and be placed at the correct spots
+
+test_mouse_click() to test the mouse_click() method of the Board class
+Valid inputs: Create a valid Board object, set the turn to player with the board's game controller, and call the mouse_click() method and set the parmeters x and y to various coordinates x and y that are on the board. Do not put in values for x and y that will be off the board.
+Expected return Values: If x and y are set to values that correspond to a tile where a disc has already been placed by a player, the player_score and ai_score attributes of the board's game controller should be unchanged.
+If x and y are set to values that correspond to a tile that is "empty" (that is, the color attribute of the disc located in the tile is -1 meaning it has not yet been chosen by a player), the player_score should increase by 1 and the ai_score should remain unchanged.
+
+test_check_board_full() to test the check_board_full() method of the Board class
+Valid inputs: Create a valid Board object
+Expected return value: If every disc in the board's atrribute (list of lists) discs has color attribute 0 or 1 (black or white) then the method should return True (board is full)
+If there is at least one disc in the board's attribute (list of lists) discs has color attribute -1 (meaning it has not yet been assigned a color) then the method should return False (board is not full)
+
+3. Tests for disc_test.py (Disc class)
+
+test_constructor() to test the constructor of the disc class
+Valid input: Create a disc object with valid inputs for row, column, TILE_SPACING (all integers) and color (0 or 1).
+Expected return values: The row, column, TILE_SPACING, and color attributes of the disc object created should match the parameters passed to the constructor.
+

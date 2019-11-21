@@ -1,0 +1,47 @@
+Pseudocode for Othello:
+The game is initialized by running the “othello_game_starter.pyde” Processing file. The game allows the user to code a specific window size for the game through the magic number WINDOW_SIZE (set to 800 by default). Another magic number variable BOARD_SIZE controls the size of the grid the game will be played in. (set to a 4x4 grid by default). The functionality is achieved through the following classes and methods:
+1.	GameController Methods:
+- update, 
+- keep_score 
+- turn_control, 
+- possible_moveset and
+- display_result
+2.	Board: Methods
+- display
+- change_tiles
+- check_board_full
+3.	Disc: Methods
+- display
+4.	Player: Method
+- make_move
+5.	Othello_AI: Method
+- make_best_move
+The game’s control functions which include switching turns, scoring, determining legal moves (as per the game rules) and game end conditions are achieved through the GameController class.
+
+Game Controller:
+o	Checks if game is over by checking if there are any empty spots on the board, if not over continue play; (method: update)
+o	We switch the player’s turn flag and display who’s turn it is on the screen (begins as player turn); (method: turn_control)
+o	Determines set of legal moves for the next turn and which discs to flip(in this case player); (method: possible_moveset). This method returns a dictionary of legal moves (legal_moveset{}). The key of the dictionary are tuples of the form (row, column)  that indicate where a disc can be placed. The values corresponding to this key tuple is a list of tuples (row, column) of all subsequent location discs that will be flipped by making the move corresponding to that key.
+Creation of the legal_moveset{} dictionary: 
+•	Identify blank tiles on the board adjacent to the current active player’s opponent discs. Consider a blank tile and add its (row, column) location as the first index to an interim list of tuples (next_move_tileset)  
+•	For the blank tile identified, loop through all 8 directions for each tile 1 by 1(up, down, right, left and diagonals). We create a directions list for this purpose that helps in iterating through these directions; direction_list()
+•	While we loop through a direction, we append the tile’s (row, column) to the next_move_tileset until we encounter a disc of the current player’s color. If this occurs, we make the first index of the list next_move_tileset as the key in legal_moveset{} and the rest of the indices as the value pair to that key. This helps me build a set of next possible legal moves.
+•	If we do not find any legal moves at this step, we set the game_over flag.
+o	Finally, in case the game is found to be over, this class has a method that displays the result and score; (method: display_result)
+Player Move: 
+In case it is the player’s move (only), the program accepts the (x, y) coordinates from mouse_pressed function in processing. These coordinates are passed to the player class which has a method make_move. This method identifies which co-ordinates the player clicked in and checks the legal_moveset{} dictionary if it is a legal valid move. 
+•	If it is a legal move: The player move is allowed and the make_move method passes the co-ordinates from that dictionary key: value pair to the Board change_tiles method.
+This method actually modifies the target tile and flips any scored tiles which need to be flipped to the player’s color.
+•	If the move is not legal (invalid), the user is not able to make the move until they click on a legal move tile.
+GameController Update: (REPEAT)
+Once the player move is completed, we re-run GameController methods to:
+-	Check if game is over:
+-	If game is not over:
+o	Switch player’s turn flag and display correct turn on screen
+o	Determine set of legal moves for the AI turn
+-	If the game is over:
+o	Display the result and score
+Othello AI Move:
+The AI on its turn, receives a set of legal moves from the GameController through the legal_moveset dictionary. The OthelloAI contains the make_best_move method that checks for the move with the biggest benefit for the AI and makes that move only. 
+Once the AI move is made, the GameController Update routine repeats checking if the game has ended or not and makes the next set of updates appropriately as described before.
+

@@ -2,7 +2,7 @@
 
 class GameController:
     """
-    Maintains state of the game
+    Controls game flow and maintains state of the game
     """
     def __init__(self, WINDOW_SIZE):
         self.WINDOW_SIZE = WINDOW_SIZE
@@ -39,6 +39,5 @@ class GameController:
         # Print Scores in different color
         fill(1, 0.8, 0.2)
         textSize(self.WINDOW_SIZE//14)
-        text("Player:" + str(self.player_score) + "\nOthello AI:" + str(self.ai_score), self.WINDOW_SIZE/2, self.WINDOW_SIZE/2 + 100)
-
-    # def turn_control(self):
+        (text("Player:" + str(self.player_score) + "\nOthello AI:" +
+         str(self.ai_score), self.WINDOW_SIZE/2, self.WINDOW_SIZE/2 + 100))
