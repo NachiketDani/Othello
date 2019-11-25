@@ -13,6 +13,6 @@ class Point:
         # The following 0 assignments are placeholders
         # to make the coe run. They need to be made to
         # calculate the coordinates of the new midpoint.
-        newX = 0
-        newY = 0
+        newX = (self.xCoord + otherPoint.xCoord)/2
+        newY = (self.yCoord + otherPoint.yCoord)/2
         return Point(newX, newY)

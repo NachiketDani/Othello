@@ -27,7 +27,7 @@ startRight = Point(RIGHT_X, RIGHT_Y)
 startTop = Point(TOP_X, TOP_Y)
 
 # Controls the recursive depth
-depth = 1
+depth = 0
 
 
 # This code is executed only once, at the beginning
@@ -57,10 +57,23 @@ def draw():
 
 # This is a recursive function that draws the Sierpinski triangle
 def sierpinksi(bottomLeft, bottomRight, top, recursionDepth):
-    # Fill this in
-    FRACTAL_FACTOR = 2
-    
-    triangle(fractal_leftX, fractal_leftY, fractal_rightX, fractal_rightY, fractal_topX, fractal_topY)
+    # Run recursion only if the depth is greater than 0
+    if recursionDepth > 0:
+        # Calculate midpoints for left, right and bottom lines
+        left_midpt = top.midPoint(bottomLeft)
+        right_midpt = bottomRight.midPoint(top)
+        bottom_midpt = bottomRight.midPoint(bottomLeft)
+        # Color black
+        fill(0)
+        # Draw black triangle
+        triangle(left_midpt.xCoord, left_midpt.yCoord,
+                 right_midpt.xCoord, right_midpt.yCoord,
+                 bottom_midpt.xCoord, bottom_midpt.yCoord)
+        # Recursively call function 3 times
+        # Each depth splits the main triangle to 3
+        sierpinksi(bottomLeft, bottom_midpt, left_midpt, recursionDepth-1)
+        sierpinksi(bottom_midpt, bottomRight, right_midpt, recursionDepth-1)
+        sierpinksi(left_midpt, right_midpt, top, recursionDepth-1)
 
 
 # The code below sets up the slider and sets a listener callback
