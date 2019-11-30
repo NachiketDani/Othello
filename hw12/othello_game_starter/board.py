@@ -10,10 +10,11 @@ class Board:
         self.TILE_SIZE = self.WINDOW_SIZE//self.BOARD_SIZE
         self.BLACK = 0
         self.WHITE = 1
+        self.PAUSE_LENGTH = 60
+        self.no_legal_move_counter = 2
         self.game_controller = game_controller
         self.player_score = 0
         self.ai_score = 0
-        self.PAUSE_LENGTH = 60
         self.counter = self.PAUSE_LENGTH
         self.direction_list = [(0, -1), (1, -1),
                                (-1, 0), (1, 0),
@@ -72,7 +73,6 @@ class Board:
             for column in range(self.BOARD_SIZE):
                 if self.discs[row][column] == 0:
                     empty_spots += 1
-
         if empty_spots == 0:
             if self.game_controller.game_over is False:
                 self.count_score()
@@ -128,9 +128,15 @@ class Board:
                                      add
                                      (disc_tuple))
         if len(self.legal_moveset) == 0:
-            self.game_controller.update()
-            print("Switched turns b/c no legal moves")
-            # NO LEGAL MOVES = TRUE
+            if self.no_legal_move_counter > 0:
+                self.no_legal_move_counter -= 1
+                self.game_controller.update()
+            elif self.no_legal_move_counter == 0:
+                self.count_score()
+                self.game_controller.game_over = True
+                self.game_controller.update()
+        else:
+            self.no_legal_move_counter = 2
 
     def possible_moveset_exit_condition(self, row, column, opponent_color):
         # Add to Dictionary of legal moves if exit condition is correct
@@ -144,11 +150,13 @@ class Board:
         return False
 
     def count_score(self):
+        self.ai_score = 0
+        self.player_score = 0
         for row in range(self.BOARD_SIZE):
             for column in range(self.BOARD_SIZE):
-                if self.discs[row][column].color == 1:
-                    self.ai_score += 1
-                elif self.discs[row][column].color == 0:
-                    self.player_score += 1
-        self.game_controller.game_winner = (self.ai_score, self.player_score)
-
+                if self.discs[row][column] != 0:
+                    if self.discs[row][column].color == 1:
+                        self.ai_score += 1
+                    elif self.discs[row][column].color == 0:
+                        self.player_score += 1
+        self.game_controller.game_scores = (self.ai_score, self.player_score)

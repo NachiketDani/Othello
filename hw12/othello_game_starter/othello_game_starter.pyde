@@ -21,7 +21,9 @@ def setup():
 def draw():
     background(0, 0.5, 0)
     board.display()
+    player.player_ready()
     othello_ai.make_best_move()
+    game_controller.display_result()
 
 
 def mousePressed():
