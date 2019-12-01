@@ -3,14 +3,16 @@ from game_controller import GameController
 
 
 class Board:
-    """Draws the Othello board & sets up """
+    """
+    Draws the Othello board & sets up
+    """
     def __init__(self, WINDOW_SIZE, BOARD_SIZE, game_controller):
         self.WINDOW_SIZE = WINDOW_SIZE
         self.BOARD_SIZE = BOARD_SIZE
         self.TILE_SIZE = self.WINDOW_SIZE//self.BOARD_SIZE
         self.BLACK = 0
         self.WHITE = 1
-        self.PAUSE_LENGTH = 60
+        self.PAUSE_LENGTH = 80
         self.no_legal_move_counter = 2
         self.game_controller = game_controller
         self.player_score = 0
@@ -33,7 +35,7 @@ class Board:
 
     def display(self):
         """
-        Draws the board grid
+        Draws the board grid and displays discs that are drawn
         """
         stroke(0)
         strokeWeight(2)
@@ -53,7 +55,8 @@ class Board:
 
     def change_tiles(self, set_of_discs, disc_color):
         """
-        Accept coordinates for the move and make the corresponding move
+        Accept coordinates for the move from Player and OthelloAI
+        and make the corresponding move with correct color
         """
         for elements in set_of_discs:
             self.discs[elements[0]][elements[1]] = Disc(elements[0],
@@ -81,7 +84,7 @@ class Board:
 
     def possible_moveset(self):
         """
-        Returns the legal moveset for the turn
+        Returns the legal moveset for whoever's turn it is
         """
         # Code to check opponent colors for that turn
         opponent_color = -1
@@ -139,7 +142,9 @@ class Board:
             self.no_legal_move_counter = 2
 
     def possible_moveset_exit_condition(self, row, column, opponent_color):
-        # Add to Dictionary of legal moves if exit condition is correct
+        """
+        Add moveset to dictionary of legal moves if exit condition is correct
+        """
         if ((row < self.BOARD_SIZE) and
             (column < self.BOARD_SIZE) and
             (row >= 0) and
@@ -150,6 +155,9 @@ class Board:
         return False
 
     def count_score(self):
+        """
+        Count the score for each player once game ends
+        """
         self.ai_score = 0
         self.player_score = 0
         for row in range(self.BOARD_SIZE):

@@ -1,18 +1,26 @@
 
 
 class Player:
+    """
+    Player class
+    """
     def __init__(self, board, game_controller):
         self.player_color = 0
         self.board = board
         self.game_controller = game_controller
 
     def player_ready(self):
+        """
+        Ready game to accept player click co-ordinates
+        """
         if self.game_controller.player_turn is True:
             self.board.possible_moveset()
+            self.game_controller.display_turn_text()
 
     def mouse_click(self, x, y):
         """
-        Identifies mouse click location and changes+alternates disc color
+        Identifies mouse click location and if legal
+        passes the move chosen to the board
         """
         print("Game initiated, mouse clicked")
         column_index = (x//self.board.TILE_SIZE)
