@@ -5,7 +5,7 @@ from player import Player
 from othello_ai import OthelloAi
 
 WINDOW_SIZE = 800
-BOARD_SIZE = 4
+BOARD_SIZE = 8
 
 game_controller = GameController(WINDOW_SIZE, BOARD_SIZE)
 board = Board(WINDOW_SIZE, BOARD_SIZE, game_controller)

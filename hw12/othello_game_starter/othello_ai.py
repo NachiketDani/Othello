@@ -8,6 +8,7 @@ class OthelloAi:
         self.player_color = 1
         self.game_controller = game_controller
         self.board = board
+        self.ai_turn_timer = 45
 
     def make_best_move(self):
         """
@@ -25,7 +26,8 @@ class OthelloAi:
                     if len(self.board.legal_moveset[key]) > len(best_move):
                         best_move = self.board.legal_moveset[key]
                 # Make move
-                if self.board.counter > 0:
-                    self.board.counter -= 1
-                if self.board.counter == 0:
+                if self.ai_turn_timer > 0:
+                    self.ai_turn_timer -= 1
+                if self.ai_turn_timer == 0:
                     self.board.change_tiles(best_move, self.player_color)
+                    self.ai_turn_timer = 45

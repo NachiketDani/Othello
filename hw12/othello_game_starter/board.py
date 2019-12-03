@@ -12,26 +12,28 @@ class Board:
         self.TILE_SIZE = self.WINDOW_SIZE//self.BOARD_SIZE
         self.BLACK = 0
         self.WHITE = 1
-        self.PAUSE_LENGTH = 80
         self.no_legal_move_counter = 2
         self.game_controller = game_controller
         self.player_score = 0
         self.ai_score = 0
-        self.counter = self.PAUSE_LENGTH
         self.direction_list = [(0, -1), (1, -1),
                                (-1, 0), (1, 0),
                                (-1, 1), (0, 1), (1, 1), (-1, -1)]
         self.legal_moveset = {}
         self.discs = [[0] * BOARD_SIZE for i in range(BOARD_SIZE)]
         # Initialize the starter discs: 2 black, 2white
-        self.discs[(self.BOARD_SIZE/2)-1][(self.BOARD_SIZE/2)-1] = (
-            Disc(1, 1, self.TILE_SIZE, self.WHITE))
-        self.discs[(self.BOARD_SIZE/2)][(self.BOARD_SIZE/2)-1] = (
-            Disc(2, 1, self.TILE_SIZE, self.BLACK))
-        self.discs[(self.BOARD_SIZE/2)][(self.BOARD_SIZE/2)] = (
-            Disc(2, 2, self.TILE_SIZE, self.WHITE))
-        self.discs[(self.BOARD_SIZE/2)-1][(self.BOARD_SIZE/2)] = (
-            Disc(1, 2, self.TILE_SIZE, self.BLACK))
+        self.discs[(self.BOARD_SIZE//2)-1][(self.BOARD_SIZE//2)-1] = (
+            Disc((self.BOARD_SIZE//2)-1, (self.BOARD_SIZE//2)-1,
+                 self.TILE_SIZE, self.WHITE))
+        self.discs[(self.BOARD_SIZE//2)][(self.BOARD_SIZE//2)-1] = (
+            Disc((self.BOARD_SIZE//2), (self.BOARD_SIZE//2)-1,
+                 self.TILE_SIZE, self.BLACK))
+        self.discs[(self.BOARD_SIZE//2)][(self.BOARD_SIZE//2)] = (
+            Disc((self.BOARD_SIZE//2), (self.BOARD_SIZE//2),
+                 self.TILE_SIZE, self.WHITE))
+        self.discs[(self.BOARD_SIZE//2)-1][(self.BOARD_SIZE//2)] = (
+            Disc((self.BOARD_SIZE//2)-1, (self.BOARD_SIZE//2),
+                 self.TILE_SIZE, self.BLACK))
 
     def display(self):
         """
@@ -63,8 +65,6 @@ class Board:
                                                         elements[1],
                                                         self.TILE_SIZE,
                                                         disc_color)
-        if self.game_controller.player_turn is True:
-            self.counter = 60
         self.check_board_full()
 
     def check_board_full(self):

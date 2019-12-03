@@ -8,6 +8,8 @@ class Player:
         self.player_color = 0
         self.board = board
         self.game_controller = game_controller
+        self.column_index = 0
+        self.row_index = 0
 
     def player_ready(self):
         """
@@ -23,12 +25,12 @@ class Player:
         passes the move chosen to the board
         """
         print("Game initiated, mouse clicked")
-        column_index = (x//self.board.TILE_SIZE)
-        row_index = (y//self.board.TILE_SIZE)
+        self.column_index = (x//self.board.TILE_SIZE)
+        self.row_index = (y//self.board.TILE_SIZE)
         # Check if legal
         if self.game_controller.player_turn is True:
-            if (row_index, column_index) in self.board.legal_moveset.keys():
+            if (self.row_index, self.column_index) in self.board.legal_moveset.keys():
                 # Make move
                 self.board.change_tiles(self.board.legal_moveset
-                                        [(row_index, column_index)],
+                                        [(self.row_index, self.column_index)],
                                         self.player_color)
