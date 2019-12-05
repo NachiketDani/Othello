@@ -35,7 +35,18 @@ def test_constructor():
     assert b.discs[3][4].color == 0
     assert b.discs[4][3].color == 0
 
-    def test_change_tiles():
-        g = GameController(800, 8)
-        b = Board(800, 8, g)
-        
+
+def test_change_tiles():
+    g = GameController(800, 8)
+    b = Board(800, 8, g)
+    test_tiles = [(0, 0), (1, 1)]
+    test_color = 1
+    b.change_tiles(test_tiles, 1)
+    for i in range(2):
+        assert b.discs[i][i] != 0
+    assert b.discs[0][0].color == 1
+    assert b.discs[1][1].color == 1
+
+
+# def test_check_board_full():
+    
