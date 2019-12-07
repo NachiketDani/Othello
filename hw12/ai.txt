@@ -1,0 +1,16 @@
+COMPUTER vs. HUMAN
+1. Did you attempt to make your computer player very smart -- i.e., do something more clever than just pick a random legal move?
+Answer: Yes. So basically my code calls a common method contained in the Board called possible_moveset() that creates a dictionary of legal move locations for either the player or AI turn.  The AI class has a method that chooses the best possible move from this set of moves that has been created for it.
+
+2. If so, were you able to accomplish this? Is your computer player as smart as you would like?
+Answer: I was able to accomplish the design for the AI that I had in mind. The computer is indeed smart to pose a competitive challenge with the algorithm designed if we play on a 8x8 board. However the computer can be countered easily if the board size is smaller.
+
+3. How did you determine which piece to play next? Tell us about your “pick next move” algorithm
+Both my Player and OthelloAI classes call a common method in the Board class that creates a set of legal moves for the current turn. This method takes a list of 8 directions, loops through each direction in such a way that is considered a legal move in Othello: legal move is a currently empty space, next to a line of opponent's discs and ends with a disc of the current player's color. This method returns a dictionary legal_moveset{} which contains key value pairs such that the key represents where the move will be made and the values represent a set of opponent's discs (including the move) that will need to change because of that move being made. The AI then picks the "best" move (make_best_move method) from this dictionary by checking which set in the values for each key is the largest.
+
+
+4. How often did your computer program beat you, or your friends, or whoever tested it out for you?
+I played this game probably over 20 to 30 times after it had achieved full functionality. I have gotten better at beating it I admit. I only had my wife test it and she was able to say she found it competitive.
+
+5. How would you improve it in the future? 
+Othello is a turn based game which makes me think there is possibly a strategy that we can maneuver the AI in to make it more competitive. Playing this game over an over taught me you can counter the opponent better if you are able to take control of edge places towards the end of the game that affect the most number of discs to flip the result at the last moment. Additionally it is theoretically possible to think ahead and create a possible legal moveset for the player's next turn for each current legal move for the AI. We can then have the AI choose such a move that minimizes the discs the player is able to affect in the next turn which maximizing the discs the AI is able to secure in the current move. Thus I think there are quite a few ways to optimize and make AI even more competitive.

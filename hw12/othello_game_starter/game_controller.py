@@ -13,8 +13,9 @@ class GameController:
         self.game_scores = None
         self.name = None
         self.name_entered = False
-        self.TURN_TEXT_TIMER = 45
-        self.ask_name_timer = self.TURN_TEXT_TIMER - 15
+        self.TURN_TEXT_TIMER = 60
+        self.ASK_NAME_TIMER = 30
+        self.ask_name_timer = self.ASK_NAME_TIMER
         self.turn_display_timer = self.TURN_TEXT_TIMER
         self.TEXT_OFFSET = 100
 
@@ -43,9 +44,6 @@ class GameController:
                 elif self.player_turn is False:
                     game_turn_text = "OthelloAI Turn"
                     text(game_turn_text, self.WINDOW_SIZE/2, self.TEXT_OFFSET)
-        else:
-            game_turn_text = " "
-            text(game_turn_text, self.WINDOW_SIZE/2, self.TEXT_OFFSET)
 
     def display_result(self):
         """
