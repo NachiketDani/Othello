@@ -4,7 +4,7 @@ from list_searcher import ListSearcher
 
 
 def main():
-    test_linear_search(10000, 1000, ordered=True)
+    test_binary_search(10000, 1000)
 
 
 def test_linear_search(N, num_trials, ordered):
